@@ -1,0 +1,33 @@
+.tip {
+  background-color: white;
+  width: 430px;
+  height: 330px;
+  position: absolute;
+  left: 425px;
+  top: 195px;
+  border-radius: 5px;
+  color: black;
+  font-weight: 900;
+  font-size: 24px;
+  align-content: center;
+  z-index: 4;
+}
+
+.tip__wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tip__img {
+  max-height: 120px;
+  max-width: 120px;
+}
+
+.tip__text {
+  text-align: center;
+}
+
+.tip-hidden {
+  visibility: hidden;
+}

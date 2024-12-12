@@ -1,0 +1,164 @@
+.places {
+  width: 880px;
+  margin: 50px 200px 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.places__card {
+  width: 282px;
+  margin-top: 0px;
+  margin-right: 0px;
+  padding: 0;
+  position: relative;
+}
+
+.places__card:first-of-type {
+  margin-left: 0;
+}
+
+.no-right-margin {
+  margin-right: 0;
+}
+
+.places__image {
+  width: 282px;
+  height: 282px;
+  margin-bottom: 0;
+  border-top-left-radius: 2%;
+  border-top-right-radius: 2%;
+}
+
+.places__wraper {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  color: #000;
+  position: relative;
+  height: 81px;
+  margin: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.places__text {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 900;
+  align-self: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.places__button-like {
+  background-image: url(../images/Heart_Vector.png);
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 19px;
+  border: none;
+  align-self: center;
+  background-color: #fff;
+}
+
+.places__button-like:hover {
+  opacity: 0.7;
+}
+
+.places__button-like:active {
+  background-image: url(../images/heart_vector_active.png);
+  background-repeat: no-repeat;
+}
+
+.places__button-likeactive {
+  background-image: url(../images/heart_vector_active.png);
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 19px;
+  border: none;
+  align-self: center;
+  background-color: #fff;
+}
+
+.places__button-trash {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  top: 25px;
+  right: 15px;
+}
+
+.trash-button_visible {
+  visibility: visible;
+}
+.trash-button_hidden {
+  visibility: hidden;
+}
+
+.places__imgtrash {
+  position: relative;
+  top: -10px;
+  left: -9px;
+}
+
+.places__likes {
+  position: relative;
+  top: 30px;
+}
+
+.places__popupcard {
+  position: fixed;
+  height: 565px;
+  width: 816px;
+  top: 90px;
+  bottom: 90px;
+  left: 20%;
+  right: 20%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  background-size: 100vh;
+}
+
+.places__popupimg {
+  height: 540px;
+  max-width: 816px;
+  margin: auto;
+}
+
+.places__popuptitle {
+  font-size: 1rem;
+  align-self: center;
+}
+
+@media screen and (max-width: 1150px) {
+  .places {
+    justify-content: center;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .places {
+    width: 282px;
+    height: fit-content;
+    flex-direction: column;
+    margin: 36px 19px;
+  }
+
+  .places__popupcard {
+    width: 240px;
+    height: 320px;
+    top: 136px;
+    left: 40px;
+    gap: 0px;
+  }
+
+  .places__popupimg {
+    width: 240px;
+    height: 299px;
+  }
+}

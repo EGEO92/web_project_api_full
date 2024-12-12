@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "InterWeb";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./Inter-Regular.woff2) format("woff2"),
+    url(./Inter-Regular.ttf) format("truetype"),
+    url(./Inter-Regular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "InterWeb";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./Inter-SemiBold.woff2) format("woff2"),
+    url(./Inter-SemiBold.ttf) format("truetype"),
+    url(./Inter-SemiBold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "InterWeb";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./Inter-Bold.woff2) format("woff2"),
+    url(./Inter-Bold.ttf) format("truetype"),
+    url(./Inter-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "InterWeb";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(./Inter-ExtraBold.woff2) format("woff2"),
+    url(./Inter-ExtraBold.ttf) format("truetype"),
+    url(./Inter-ExtraBold.otf) format("opentype");
+}

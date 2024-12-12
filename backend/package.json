@@ -1,0 +1,34 @@
+{
+  "name": "web_project_around_express_egeo92",
+  "version": "1.0.0",
+  "description": "First project implementing a server using express of node.js",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "lint": "npx eslint .",
+    "dev": "nodemon"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "javascript",
+    "egeo92"
+  ],
+  "author": "EGEO92",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.11.1"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "express-winston": "^4.2.0",
+    "joi": "^17.13.3",
+    "mongoose": "^8.7.0",
+    "nodemon": "^3.1.7",
+    "winston": "^3.17.0"
+  }
+}
