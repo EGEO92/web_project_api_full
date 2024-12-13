@@ -192,7 +192,7 @@ class Api {
 
   changeLikeCardStatus(cardId, isLiked) {
     console.log("cardID ===>", cardId);
-    if (isLiked) {
+    if (isLiked === true) {
       return this.removeLike(cardId);
     } else {
       return this.addLike(cardId);

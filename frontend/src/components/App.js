@@ -232,11 +232,13 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     console.log("isLiked= ", isLiked);
-    if (isLiked === false) {
-      console.log("entramos?");
-      api.addLike(card._id);
-    }
+    // if (isLiked === false) {
+    //   console.log("entramos?");
+    //   api.addLike(card._id);
+    // }
+    console.log("🚀 ~ handleCardLike ~ cardID:", card._id);
     api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
+      console.log("🚀 ~ api.changeLikeCardStatus ~ newCard:", newCard);
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
     });
   }
@@ -250,7 +252,11 @@ function App() {
     api.addCard(data, currentUser._id).then((newCard) => {
       //no llega la data al metodo addCard
       console.log("carta nueva?? ", newCard);
-      setCards([newCard, ...cards]);
+      if (Array.isArray(cards)) {
+        setCards([...cards, newCard]);
+      } else {
+        setCards([newCard]);
+      }
     });
     closeAllPopups();
   }

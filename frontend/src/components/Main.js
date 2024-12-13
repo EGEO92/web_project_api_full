@@ -59,7 +59,7 @@ export default function Main(props) {
         </button>
       </section>
       <section className="places">
-        {props.cards.map((card) => (
+        {props.cards?.map((card) => (
           <Card
             name={card.name}
             link={card.link}

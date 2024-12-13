@@ -37,10 +37,13 @@ export async function createCard(req, res) {
 export async function deleteCardById(req, res) {
   try {
     const { _id } = req.params;
+    const { _id: userId } = req.user;
+    console.log("🚀 ~ deleteCardById ~ userId:", userId);
     const card = await Card.findById(_id).orFail();
-    if (card.owner.valueOf() === _id) {
-      const cardToDelete = await Card.findByIdAndRemove(_id);
-      res.send(cardToDelete);
+    console.log("🚀 ~ deleteCardById ~ card:", card);
+    if (card.owner.valueOf() === userId) {
+      const cardToDelete = await Card.findByIdAndDelete(_id);
+      return res.send(cardToDelete);
     }
     return res.status(403).send({
       message: `Quien eres tu? porque intentas borrar la carta de ${card.owner.valueOf()}`,
@@ -65,7 +68,7 @@ export async function deleteCardById(req, res) {
 
 export async function giveLikes(req, res) {
   try {
-    console.log(req.params);
+    console.log("userID y params", req.params, req.user);
     Card.findByIdAndUpdate(
       req.params._id,
       { $addToSet: { likes: req.user._id } },
