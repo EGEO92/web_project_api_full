@@ -6,6 +6,8 @@ import auth from "./middleware/auth.js";
 import cors from "cors";
 import { createUser, loginUser } from "./controllers/users.js";
 import { errorLogger, requestLogger } from "./middleware/logs.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const { PORT = 3000 } = process.env;

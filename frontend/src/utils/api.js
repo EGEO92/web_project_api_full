@@ -34,7 +34,6 @@ class Api {
       },
     })
       .then((res) => {
-        console.log("comparativa: ", res);
         if (res.ok) {
           return res.json();
         } else {
@@ -89,7 +88,6 @@ class Api {
       }),
     })
       .then((res) => {
-        console.log("paso 1 edit avatar: ", res);
         if (res.ok) {
           return res.json();
         } else {
@@ -116,7 +114,6 @@ class Api {
       }),
     })
       .then((res) => {
-        console.log("paso 1 add card: ", res);
         if (res.ok) {
           return res.json();
         } else {
@@ -158,7 +155,6 @@ class Api {
       },
     })
       .then((res) => {
-        console.log("paso 1, likes ==> ", res);
         if (res.ok) {
           return res.json();
         } else {
@@ -191,7 +187,6 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    console.log("cardID ===>", cardId);
     if (isLiked === true) {
       return this.removeLike(cardId);
     } else {

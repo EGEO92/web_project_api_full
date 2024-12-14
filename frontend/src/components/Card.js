@@ -13,7 +13,7 @@ export default function Card({
 }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i === currentUser._id);
   const cardLikeButtonClassName = `${
     isLiked ? "places__button-likeactive" : "places__button-like"
   }`;
@@ -25,7 +25,6 @@ export default function Card({
     onCardLike(card);
   }
   function handleDeleteClick() {
-    console.log(card);
     onCardDelete(card);
   }
   return (

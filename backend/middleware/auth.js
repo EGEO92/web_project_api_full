@@ -1,5 +1,10 @@
 import jwt from "jsonwebtoken";
 
+import dotenv from "dotenv";
+dotenv.config();
+
+const { NODE_ENV = "local", JWT_SECRET = "" } = process.env;
+
 export default async function auth(req, res, next) {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith("Bearer ")) {
@@ -9,7 +14,10 @@ export default async function auth(req, res, next) {
   const token = authorization.replace("Bearer ", "");
   let payload;
   try {
-    payload = jwt.verify(token, "super-strong-secret-ñ");
+    payload = jwt.verify(
+      token,
+      NODE_ENV === "production" ? JWT_SECRET : "super-strong-secret-ñ"
+    );
   } catch (err) {
     return res
       .status(401)

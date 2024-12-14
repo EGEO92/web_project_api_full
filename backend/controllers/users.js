@@ -2,6 +2,11 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import dotenv from "dotenv";
+dotenv.config();
+
+const { NODE_ENV = "local", JWT_SECRET = "" } = process.env;
+
 export async function getUsers(req, res) {
   try {
     const users = await User.find({});
@@ -90,7 +95,6 @@ export async function updateAvatar(req, res) {
       { avatar },
       { new: true }
     ).orFail();
-    console.log("back end: ", newAvatar);
     return res.send(newAvatar);
   } catch (err) {
     if (err === "CastError") {
@@ -110,11 +114,11 @@ export async function updateAvatar(req, res) {
 }
 
 export async function loginUser(req, res) {
-  // try {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, "super-strong-secret-ñ", {
+      const token = jwt.sign({ _id: user._id },
+        NODE_ENV === "production"? JWT_SECRET : "super-strong-secret-ñ", {
         expiresIn: "7d",
       });
       res.send({ token, status: "ok" });
@@ -122,16 +126,4 @@ export async function loginUser(req, res) {
     .catch(() => {
       return res.status(401).send({ message: "Email o contraseña incorrecta" });
     });
-
-  //   const user = await User.findUserByCredentials(email, password).orFail();
-  //   // if (!user) {
-  //   //   return Promise.reject();
-  //   // }
-  //   const token = jwt.sign({ _id: user._id }, "super-strong-secret-ñ", {
-  //     expiresIn: "7d",
-  //   });
-  //   return res.send(token);
-  // } catch (err) {
-  //   return res.status(401).send({ message: "Email o contraseña incorrecta" });
-  // }
 }

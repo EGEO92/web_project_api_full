@@ -30,17 +30,14 @@ export default function Register(props) {
         return;
       }
       const res = await auth.register(user);
-      const { error, data } = await res.json();
-      if (error) {
-        setIsSuccess(false);
-        handleOpen();
-        throw new Error(error);
-      }
-      if (data) {
-        console.log("esta el id??? ===>>> ", data);
+      if (res) {
         setIsSuccess(true);
         handleOpen();
         history("/signin");
+      } else {
+        setIsSuccess(false);
+        handleOpen();
+        throw new Error();
       }
     } catch (er) {
       setIsSuccess(false);

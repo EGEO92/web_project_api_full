@@ -69,12 +69,15 @@ export async function deleteCardById(req, res) {
 export async function giveLikes(req, res) {
   try {
     console.log("userID y params", req.params, req.user);
-    Card.findByIdAndUpdate(
+    const likedCard = await Card.findByIdAndUpdate(
       req.params._id,
       { $addToSet: { likes: req.user._id } },
       { new: true }
     ).orFail();
+    console.log("🚀 ~ giveLikes ~ likedCard:", likedCard);
+    res.send(likedCard);
   } catch (err) {
+    console.log("🚀 ~ giveLikes ~ err:", err);
     if (err.name === "CastError") {
       return res.status(400).send("No sabemos que paso... otra vez...");
     }
@@ -89,11 +92,12 @@ export async function giveLikes(req, res) {
 
 export async function deleteLikes(req, res) {
   try {
-    Card.findByIdAndUpdate(
+    const removedLike = await Card.findByIdAndUpdate(
       req.params._id,
       { $pull: { likes: req.user._id } },
       { new: true }
     ).orFail();
+    res.send(removedLike);
   } catch (err) {
     if (err.name === "CastError") {
       return res.status(400).send("No sabemos que paso... otra vez...");

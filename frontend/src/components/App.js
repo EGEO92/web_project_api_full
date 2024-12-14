@@ -113,45 +113,33 @@ function App() {
   const [isSucces, setIsSuccess] = useState(false);
   const [email, setEmail] = useState("");
   const history = useNavigate();
-  const [jwtoken, setJwtoken] = useState("");
 
   useEffect(() => {
     async function handleCheckToken() {
       const token = localStorage.getItem("jwt");
-      console.log("token???  ", token);
-
       if (!token) {
-        history("/signin");
         setLoggedIn(false);
         return;
       }
       if (typeof token === "object") {
         try {
-          setJwtoken(JSON.stringify(token));
           const res = await auth.checkToken(JSON.stringify(token));
           const response = await res.json();
           const data = JSON.parse(JSON.stringify(response));
-          console.log("data???  ", data.email);
           setEmail(data.email);
           setLoggedIn(true);
           history("/");
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       }
       if (typeof token === "string") {
         try {
-          setJwtoken(token);
           const res = await auth.checkToken(token);
           const response = await res.json();
           const data = JSON.parse(JSON.stringify(response));
-          console.log("data???  ", data);
           setEmail(data.email);
           setLoggedIn(true);
           history("/");
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       }
     }
     handleCheckToken();
@@ -160,7 +148,6 @@ function App() {
   useEffect(() => {
     async function getCurrentUser() {
       const response = await api.getUserInfo();
-      console.log("user???? ==> ", response);
       setCurrentUser(response);
     }
     if (loggedIn) {
@@ -171,7 +158,6 @@ function App() {
   useEffect(() => {
     async function getCards() {
       const response = await api.getInitialCards();
-      console.log("cards???? ==> ", response);
       setCards(response);
     }
     if (loggedIn) {
@@ -225,20 +211,12 @@ function App() {
     closeAllPopups();
   }
   function handleUpdateAvatar(link) {
-    console.log("avatar: ", link);
     api.editUserAvatar(link);
     closeAllPopups();
   }
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    console.log("isLiked= ", isLiked);
-    // if (isLiked === false) {
-    //   console.log("entramos?");
-    //   api.addLike(card._id);
-    // }
-    console.log("🚀 ~ handleCardLike ~ cardID:", card._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-      console.log("🚀 ~ api.changeLikeCardStatus ~ newCard:", newCard);
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
     });
   }
@@ -248,10 +226,7 @@ function App() {
     });
   }
   function handleAddPlace(data) {
-    console.log("datos para carta nueva??? ", data);
     api.addCard(data, currentUser._id).then((newCard) => {
-      //no llega la data al metodo addCard
-      console.log("carta nueva?? ", newCard);
       if (Array.isArray(cards)) {
         setCards([...cards, newCard]);
       } else {
