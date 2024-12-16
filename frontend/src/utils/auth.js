@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3000"; //"https://se-register-api.en.tripleten-services.com/v1";
+const BASE_URL =
+  "http://localhost:3000" || "api.freednsmi.dominio.gratis.egeo92.mooo.com/"; //"https://se-register-api.en.tripleten-services.com/v1";
 
 export const register = async ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
