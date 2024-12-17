@@ -197,7 +197,9 @@ class Api {
 
 const api = new Api({
   //baseUrl: "https://around.nomoreparties.co/v1/web_es_11",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://api.freednsmi.dominio.gratis.egeo92.mooo.com/",
+  // ||
+  //"http://localhost:3000"
   headers: {
     //authorization: "072a79cd-90d0-408b-be9c-36f27d8f66a3",
     authorization: "",

@@ -9,6 +9,8 @@ import { errorLogger, requestLogger } from "./middleware/logs.js";
 import dotenv from "dotenv";
 dotenv.config();
 
+//const Cors = cors();
+
 const app = express();
 const { PORT = 3000 } = process.env;
 
@@ -21,7 +23,7 @@ mongoose
     console.log("Algo salio mal -------", err);
   });
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.options("*", cors());
 app.use(express.json());
 
