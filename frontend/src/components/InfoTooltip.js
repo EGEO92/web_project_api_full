@@ -12,6 +12,7 @@ export default function InfoTooltip(props) {
       <button
         className="popup__close close popup__closeadd button"
         onClick={handleClose}
+        o
       >
         <img src={closeButton} alt="boton de cerrar" />
       </button>

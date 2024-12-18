@@ -33,6 +33,12 @@ export default function Register(props) {
       if (res) {
         setIsSuccess(true);
         handleOpen();
+        await new Promise((resp) => {
+          setTimeout(() => {
+            handleCloseTip();
+            resp();
+          }, 1000);
+        });
         history("/signin");
       } else {
         setIsSuccess(false);
@@ -47,13 +53,13 @@ export default function Register(props) {
   }
 
   function handleCloseTip() {
-    setToolTipOpen(false);
     props.onClose();
+    setToolTipOpen(false);
   }
 
   function handleOpen() {
-    props.successInfo();
     setToolTipOpen(true);
+    props.successInfo();
   }
 
   return (

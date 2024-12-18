@@ -1,14 +1,36 @@
 import logoUs from "../images/header_title.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Header(props) {
   const history = useNavigate();
+  const location = useLocation();
 
   function handleLogout() {
     props.onSignOut();
   }
   function redirect() {
-    history("/signin");
+    if (location.pathname === "/signup") {
+      history("/signin");
+    }
+    if (location.pathname === "/signin") {
+      history("/signup");
+    }
+  }
+  function handleLocation() {
+    if (location.pathname === "/signup") {
+      return (
+        <p className="header__text" onClick={redirect}>
+          Iniciar sesion
+        </p>
+      );
+    }
+    if (location.pathname === "/signin") {
+      return (
+        <p className="header__text" onClick={redirect}>
+          Regístrate
+        </p>
+      );
+    }
   }
 
   return (
@@ -25,9 +47,7 @@ export default function Header(props) {
           Cerrar sesion
         </p>
       ) : (
-        <p className="header__text" onClick={redirect}>
-          Iniciar sesion
-        </p>
+        handleLocation()
       )}
     </header>
   );
